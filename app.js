@@ -1,4 +1,4 @@
-const { place, move, left, right } = require('./controllers/toyController')
+const { place, move, left, right, report } = require('./controllers/toyController')
 
 const command = process.argv.slice(2)
 
@@ -16,7 +16,7 @@ switch (command[0]) {
     right()
     break;
   case 'REPORT':
-  
+    report()
     break;
   default:
     console.log('invalid input')

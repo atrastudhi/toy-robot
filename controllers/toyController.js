@@ -99,5 +99,15 @@ module.exports = {
         }
       }
     })
+  },
+  report: () => {
+    fs.readFile('place.json', 'utf8', (err, data) => {
+      if (err) {
+        console.log('must place the toy robot')
+      } else {
+        let obj = JSON.parse(data)
+        console.log(`${obj.x},${obj.y},${obj.face}`)
+      }
+    })
   }
 }
