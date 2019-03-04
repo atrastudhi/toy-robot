@@ -10,9 +10,50 @@ module.exports = {
     }
     if (Number(posisition.x) < 0 || Number(posisition.y) > 4) {
       console.log('out of range')
+    } else {
+      fs.writeFile('place.json', JSON.stringify(posisition), (err) => {
+        if (err) console.log(err)
+      })
     }
-    fs.writeFile('place.json', JSON.stringify(posisition), (err) => {
-      if (err) console.log(err)
+  },
+  move: () => {
+    fs.readFile('place.json', 'utf8',(err, data) => {
+      if (err) {
+        console.log('must place the toy robot')
+      } else {
+        let obj = JSON.parse(data)
+        if (obj.face === 'NORTH') {
+          if (Number(obj.y) === 4) {
+            console.log('out of range')
+          } else {
+            obj.y = Number(obj.y) + 1
+            fs.writeFileSync('place.json', JSON.stringify(obj))
+          }
+        } else if (obj.face === 'SOUTH') {
+          if (Number(obj.y) === 0) {
+            console.log('out of range')
+          } else {
+            obj.y = Number(obj.y) - 1
+            fs.writeFileSync('place.json', JSON.stringify(obj))
+          }
+        } else if (obj.face === 'EAST') {
+          if (Number(obj.x) === 4) {
+            console.log('out of range')
+          } else {
+            obj.x = Number(obj.x) + 1
+            fs.writeFileSync('place.json', JSON.stringify(obj))
+          }
+        } else if (obj.face === 'WEST') {
+          if (Number(obj.x) === 0) {
+            console.log('out of range')
+          } else {
+            obj.x = Number(obj.x) - 1
+            fs.writeFileSync('place.json', JSON.stringify(obj))
+          }
+        } else {
+          console.log('invalid input')
+        }
+      }
     })
   }
 }
