@@ -55,5 +55,27 @@ module.exports = {
         }
       }
     })
+  },
+  left: () => {
+    fs.readFile('place.json', 'utf8', (err, data) => {
+      if (err) {
+        console.log('must place the toy robot')
+      } else {
+        let obj = JSON.parse(data)
+        if (obj.face === 'NORTH') {
+          obj.face = 'WEST'
+          fs.writeFileSync('place.json', JSON.stringify(obj))
+        } else if (obj.face === 'SOUTH') {
+          obj.face = 'EAST'
+          fs.writeFileSync('place.json', JSON.stringify(obj))
+        } else if (obj.face === 'EAST') {
+          obj.face = 'NORTH'
+          fs.writeFileSync('place.json', JSON.stringify(obj))
+        } else if (obj.face === 'WEST') {
+          obj.face = 'SOUTH'
+          fs.writeFileSync('place.json', JSON.stringify(obj))
+        }
+      }
+    })
   }
 }
