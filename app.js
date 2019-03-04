@@ -1,10 +1,10 @@
-const fs = require('fs')
+const { place } = require('./controllers/toyController')
 
 const command = process.argv.slice(2)
 
 switch (command[0]) {
   case 'PLACE':
-  
+    place(command[1])
     break;
   case 'MOVE':
 
