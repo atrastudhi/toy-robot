@@ -1,4 +1,4 @@
-const { place, move, left } = require('./controllers/toyController')
+const { place, move, left, right } = require('./controllers/toyController')
 
 const command = process.argv.slice(2)
 
@@ -13,7 +13,7 @@ switch (command[0]) {
     left()
     break;
   case 'RIGHT':
-  
+    right()
     break;
   case 'REPORT':
   
